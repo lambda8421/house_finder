@@ -15,7 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * Created by 瓦力.
+ * Created by
  */
 @Configuration
 @EnableJpaRepositories(basePackages = "com.mofei.house_finder.repository")
