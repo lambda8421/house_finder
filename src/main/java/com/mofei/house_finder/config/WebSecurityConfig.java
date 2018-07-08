@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .and()
                 .exceptionHandling()
-//                .authenticationEntryPoint(urlEntryPoint())
+                .authenticationEntryPoint(urlEntryPoint())
                 .accessDeniedPage("/403");
 
         http.csrf().disable();
@@ -60,6 +60,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthProvider authProvider() {
         return new AuthProvider();
+    }
+
+    @Bean
+    public LoginUrlEntryPoint urlEntryPoint(){
+        return new LoginUrlEntryPoint("/user/login");
     }
 
 

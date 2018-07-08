@@ -11,12 +11,12 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping(value = "/x")
+    @GetMapping(value = "/index")
     public String home(){
         return "index";
     }
 
-    @RequestMapping(value = "/xxx",method = RequestMethod.GET)
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
     @ResponseBody
     public APIResponse get(){
         return APIResponse.ofMessage(200,"SUCCESS");
@@ -35,5 +35,10 @@ public class HomeController {
     @GetMapping(value = "/500")
     public String internalError(){
         return "500";
+    }
+
+    @GetMapping(value = "/logout/page")
+    public String logoutPage(){
+        return "logout";
     }
 }
