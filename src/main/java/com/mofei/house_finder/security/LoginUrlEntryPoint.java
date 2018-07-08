@@ -1,4 +1,4 @@
-package com.mofei.house_finder.config;
+package com.mofei.house_finder.security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
