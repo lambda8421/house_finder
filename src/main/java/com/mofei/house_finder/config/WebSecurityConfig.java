@@ -1,17 +1,22 @@
 package com.mofei.house_finder.config;
 
-import com.mofei.house_finder.security.AuthProvider;
-import com.mofei.house_finder.security.LoginAuthFailHandler;
-import com.mofei.house_finder.security.LoginUrlEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.mofei.house_finder.security.AuthProvider;
+import com.mofei.house_finder.security.LoginAuthFailHandler;
+import com.mofei.house_finder.security.LoginUrlEntryPoint;
+
+/**
+ * Created by 瓦力.
+ */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -52,16 +57,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().sameOrigin();
     }
 
-    @Bean
-    public LoginAuthFailHandler authFailHandler() {
-        return new LoginAuthFailHandler(urlEntryPoint());
-    }
-
     /**
      * 自定义认证策略
      */
     @Autowired
-    public void configGlobal(AuthenticationManagerBuilder auth) {
+    public void configGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authProvider()).eraseCredentials(true);
     }
 
@@ -71,10 +71,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public LoginUrlEntryPoint urlEntryPoint(){
+    public LoginUrlEntryPoint urlEntryPoint() {
         return new LoginUrlEntryPoint("/user/login");
     }
 
+    @Bean
+    public LoginAuthFailHandler authFailHandler() {
+        return new LoginAuthFailHandler(urlEntryPoint());
+    }
 
+    @Bean
+    public AuthenticationManager authenticationManager() {
+        AuthenticationManager authenticationManager = null;
+        try {
+            authenticationManager =  super.authenticationManager();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return authenticationManager;
+    }
 
+//    @Bean
+//    public AuthFilter authFilter() {
+//        AuthFilter authFilter = new AuthFilter();
+//        authFilter.setAuthenticationManager(authenticationManager());
+//        authFilter.setAuthenticationFailureHandler(authFailHandler());
+//        return authFilter;
+//    }
 }
