@@ -40,6 +40,15 @@ public class AdminController {
     }
 
     /**
+     * 新增房源功能页
+     * @return
+     */
+    @GetMapping("admin/add/house")
+    public String addHousePage() {
+        return "admin/house-add";
+    }
+
+    /**
      * 房源列表页
      * @return
      */
@@ -56,7 +65,8 @@ public class AdminController {
         }
 
         String fileName = file.getOriginalFilename();
-        File target = new File("/Users/mofei/IdeaProjects/house_finder/tmp"+fileName);
+        System.out.println(fileName);
+        File target = new File("/Users/mofei/IdeaProjects/house_finder/tmp/"+fileName);
         try {
             file.transferTo(target);
         } catch (IOException e) {
