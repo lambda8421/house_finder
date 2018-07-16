@@ -65,11 +65,12 @@ public class APIResponse {
 
     public enum Status{
         SUCCESS(200,"OK"),
-        BAD_REQUEST(400,"OK"),
-        INTERAL_SERVER_ERRO(500,"OK"),
-        NOT_VALID_PARAM(40005,"OK"),
-        NOT_SUPPORTED_OPERATION(40006,"OK"),
-        NOT_LOGIN(50000,"OK");
+        BAD_REQUEST(400,"Bad Request"),
+        NOT_FOUND(404,"Not Found"),
+        INTERAL_SERVER_ERRO(500,"INTERAL_SERVER_ERRO"),
+        NOT_VALID_PARAM(40005,"NOT_VALID_PARAM"),
+        NOT_SUPPORTED_OPERATION(40006,"NOT_SUPPORTED_OPERATION"),
+        NOT_LOGIN(50000,"NOT_LOGIN");
 
         private int code;
         private String standardMessage;
