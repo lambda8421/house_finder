@@ -1,7 +1,10 @@
-package com.mofei.house_finder.controller.house;
+package com.mofei.house_finder.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Created by 瓦力.
+ */
 public class SupportAddressDTO {
     private Long id;
     @JsonProperty(value = "belong_to")
