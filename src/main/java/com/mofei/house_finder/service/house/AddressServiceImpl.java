@@ -1,9 +1,16 @@
 package com.mofei.house_finder.service.house;
 
+import com.mofei.house_finder.dto.SubwayDTO;
+import com.mofei.house_finder.dto.SubwayStationDTO;
 import com.mofei.house_finder.dto.SupportAddressDTO;
+import com.mofei.house_finder.entity.Subway;
+import com.mofei.house_finder.entity.SubwayStation;
 import com.mofei.house_finder.entity.SupportAddress;
+import com.mofei.house_finder.repository.SubwayRepository;
+import com.mofei.house_finder.repository.SubwayStationRepository;
 import com.mofei.house_finder.repository.SupportAddressRepository;
 import com.mofei.house_finder.service.ServiceMultiResult;
+import com.mofei.house_finder.service.ServiceResult;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +24,12 @@ import java.util.Map;
 public class AddressServiceImpl implements IAddressService{
     @Autowired
     private SupportAddressRepository supportAddressRepository;
+
+    @Autowired
+    private SubwayRepository subwayRepository;
+
+    @Autowired
+    private SubwayStationRepository subwayStationRepository;
 
     @Autowired
     private ModelMapper modelMapper;
