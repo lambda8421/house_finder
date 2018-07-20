@@ -2,10 +2,12 @@ package com.mofei.house_finder.entity;
 
 import javax.persistence.*;
 
+/**
+ * Created by mofei.
+ */
 @Entity
 @Table(name = "support_address")
 public class SupportAddress {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -111,5 +113,4 @@ public class SupportAddress {
             throw new IllegalArgumentException();
         }
     }
-
 }

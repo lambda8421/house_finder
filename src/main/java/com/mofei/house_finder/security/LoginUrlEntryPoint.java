@@ -1,22 +1,21 @@
 package com.mofei.house_finder.security;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 基于角色的登录入口控制器
- * Created by 瓦力.
+ * Created by mofei.
  */
 public class LoginUrlEntryPoint extends LoginUrlAuthenticationEntryPoint {
 
@@ -49,7 +48,6 @@ public class LoginUrlEntryPoint extends LoginUrlAuthenticationEntryPoint {
                                                      AuthenticationException exception) {
         String uri = request.getRequestURI().replace(request.getContextPath(), "");
 
-        System.out.println("uri is" + uri.toString());
         for (Map.Entry<String, String> authEntry : this.authEntryPointMap.entrySet()) {
             if (this.pathMatcher.match(authEntry.getKey(), uri)) {
                 return authEntry.getValue();

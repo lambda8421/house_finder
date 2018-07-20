@@ -236,8 +236,12 @@
 								<rule>
 									<element>CLASS</element>
 									<includes>
-										<include>com.imooc.service.*.*</include>
-										<include>com.imooc.repository.*</include>
+                                        <include>
+                                            com.mofei.house_finder.service.*.*
+                                        </include>
+                                        <include>
+                                            com.mofei.house_finder.repository.*
+                                        </include>
 									</includes>
 									<limits>
 										<limit>

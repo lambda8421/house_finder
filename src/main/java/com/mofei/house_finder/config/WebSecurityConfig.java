@@ -1,5 +1,9 @@
 package com.mofei.house_finder.config;
 
+import com.mofei.house_finder.security.AuthFilter;
+import com.mofei.house_finder.security.AuthProvider;
+import com.mofei.house_finder.security.LoginAuthFailHandler;
+import com.mofei.house_finder.security.LoginUrlEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,12 +14,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.mofei.house_finder.security.AuthProvider;
-import com.mofei.house_finder.security.LoginAuthFailHandler;
-import com.mofei.house_finder.security.LoginUrlEntryPoint;
-
 /**
- * Created by 瓦力.
+ * Created by mofei.
  */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity
@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class);
 
         // 资源访问权限
         http.authorizeRequests()
@@ -37,7 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/login").permitAll() // 用户登录入口
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/api/user/**").hasAnyRole("ADMIN","USER")
+                .antMatchers("/api/user/**").hasAnyRole("ADMIN",
+                "USER")
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login") // 配置角色登录处理入口
@@ -91,11 +92,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return authenticationManager;
     }
 
-//    @Bean
-//    public AuthFilter authFilter() {
-//        AuthFilter authFilter = new AuthFilter();
-//        authFilter.setAuthenticationManager(authenticationManager());
-//        authFilter.setAuthenticationFailureHandler(authFailHandler());
-//        return authFilter;
-//    }
+    @Bean
+    public AuthFilter authFilter() {
+        AuthFilter authFilter = new AuthFilter();
+        authFilter.setAuthenticationManager(authenticationManager());
+        authFilter.setAuthenticationFailureHandler(authFailHandler());
+        return authFilter;
+    }
 }

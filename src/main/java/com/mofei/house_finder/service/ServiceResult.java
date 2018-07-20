@@ -2,7 +2,7 @@ package com.mofei.house_finder.service;
 
 /**
  * 服务接口通用结构
- * Created by 瓦力.
+ * Created by mofei.
  */
 public class ServiceResult<T> {
     private boolean success;

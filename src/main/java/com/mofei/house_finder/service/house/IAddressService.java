@@ -1,16 +1,26 @@
 package com.mofei.house_finder.service.house;
 
-import com.mofei.house_finder.dto.SubwayDTO;
-import com.mofei.house_finder.dto.SubwayStationDTO;
-import com.mofei.house_finder.dto.SupportAddressDTO;
 import com.mofei.house_finder.entity.SupportAddress;
 import com.mofei.house_finder.service.ServiceMultiResult;
 import com.mofei.house_finder.service.ServiceResult;
+import com.mofei.house_finder.service.search.BaiduMapLocation;
+import com.mofei.house_finder.web.dto.SubwayDTO;
+import com.mofei.house_finder.web.dto.SubwayStationDTO;
+import com.mofei.house_finder.web.dto.SupportAddressDTO;
 
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 地址服务接口
+ * Created by mofei.
+ */
 public interface IAddressService {
+    /**
+     * 获取所有支持的城市列表
+     *
+     * @return
+     */
     ServiceMultiResult<SupportAddressDTO> findAllCities();
 
     /**
@@ -63,21 +73,23 @@ public interface IAddressService {
      */
     ServiceResult<SupportAddressDTO> findCity(String cityEnName);
 
-//    /**
-//     * 根据城市以及具体地位获取百度地图的经纬度
-//     */
-//    ServiceResult<BaiduMapLocation> getBaiduMapLocation(String city, String address);
-//
-//    /**
-//     * 上传百度LBS数据
-//     */
-//    ServiceResult lbsUpload(BaiduMapLocation location, String title, String address,
-//                            long houseId, int price, int area);
-//
-//    /**
-//     * 移除百度LBS数据
-//     * @param houseId
-//     * @return
-//     */
-//    ServiceResult removeLbs(Long houseId);
+    /**
+     * 根据城市以及具体地位获取百度地图的经纬度
+     */
+    ServiceResult<BaiduMapLocation> getBaiduMapLocation(String city, String address);
+
+    /**
+     * 上传百度LBS数据
+     */
+    ServiceResult lbsUpload(BaiduMapLocation location, String title, String address,
+                            long houseId, int price, int area);
+
+    /**
+     * 移除百度LBS数据
+     *
+     * @param houseId
+     * @return
+     */
+    ServiceResult removeLbs(Long houseId);
 }
+

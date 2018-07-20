@@ -2,8 +2,11 @@ package com.mofei.house_finder.service;
 
 import java.util.List;
 
+/**
+ * 通用多结果Service返回结构
+ * Created by mofei.
+ */
 public class ServiceMultiResult<T> {
-
     private long total;
     private List<T> result;
 
@@ -28,15 +31,10 @@ public class ServiceMultiResult<T> {
         this.result = result;
     }
 
-    public int getResultSize(){
-        if (this.result == null){
+    public int getResultSize() {
+        if (this.result == null) {
             return 0;
         }
         return this.result.size();
-    }
-
-    public int XYZ(){
-
-        return 1;
     }
 }

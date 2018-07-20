@@ -10,8 +10,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Configuration
-//@ActiveProfiles("test")
+@ActiveProfiles("test")
 public class HouseFinderApplicationTests {
+    @Test
+    public void test() {
 
+    }
 
 }

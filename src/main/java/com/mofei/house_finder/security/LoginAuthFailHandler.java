@@ -1,17 +1,16 @@
 package com.mofei.house_finder.security;
 
-import java.io.IOException;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import java.io.IOException;
 
 /**
  * 登录验证失败处理器
- * Created by 瓦力.
+ * Created by mofei.
  */
 public class LoginAuthFailHandler extends SimpleUrlAuthenticationFailureHandler {
     private final LoginUrlEntryPoint urlEntryPoint;
@@ -31,4 +30,3 @@ public class LoginAuthFailHandler extends SimpleUrlAuthenticationFailureHandler 
         super.onAuthenticationFailure(request, response, exception);
     }
 }
-

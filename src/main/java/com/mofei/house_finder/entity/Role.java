@@ -2,6 +2,9 @@ package com.mofei.house_finder.entity;
 
 import javax.persistence.*;
 
+/**
+ * Created by mofei.
+ */
 @Entity
 @Table(name = "role")
 public class Role {
